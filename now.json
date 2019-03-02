@@ -1,4 +1,5 @@
 {
   "version": 2,
+  "name": "varbrad.dev",
   "builds": [{ "src": "next.config.js", "use": "@now/next" }]
 }
