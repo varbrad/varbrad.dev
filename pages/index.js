@@ -1,7 +1,5 @@
 import React from 'react'
 
-let f = 123
-
 const Home = () => {
   const [data, setData] = React.useState(0)
   return (
