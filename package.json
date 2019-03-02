@@ -9,11 +9,21 @@
     "dev": "next",
     "build": "next build",
     "now-build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint pages",
+    "test": "jest"
   },
   "dependencies": {
     "next": "^8.0.3",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.1.0",
+    "prettier": "^1.16.4"
   }
 }
