@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
       <h1>Hi!</h1>
-      <p>Current vale is: {data}</p>
+      <p>Current value is: {data}</p>
       <button onClick={() => setData(state => state + 1)}>
         Click to +1
       </button>
