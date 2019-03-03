@@ -24,22 +24,30 @@ jobs: # a collection of steps
           name: js:install
           command: yarn
       - *save_node_modules
-  lint:
+  js:lint:
     <<: *js_env
     steps:
       - checkout
       - *restore_node_modules
       - run:
           name: js:lint
-          command: yarn lint
-  test:
+          command: yarn js:lint
+  js:test:
     <<: *js_env
     steps:
       - checkout
       - *restore_node_modules
       - run:
           name: js:test
-          command: yarn test
+          command: yarn js:test
+  scss:lint:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: scss:lint
+          command: yarn scss:lint
   build:
     <<: *js_env
     steps:
@@ -53,10 +61,13 @@ workflows:
   js_ci:
     jobs:
       - setup
-      - lint:
+      - js:lint:
           requires:
             - setup
-      - test:
+      - js:test:
+          requires:
+            - setup
+      - scss:lint:
           requires:
             - setup
       - build:
