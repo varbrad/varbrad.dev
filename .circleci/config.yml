@@ -1,24 +1,66 @@
-version: 2.1 # use CircleCI 2.0
+version: 2 # use CircleCI 2.0
+
+references:
+  js_env: &js_env
+    docker:
+      - image: circleci/node:8.15.0
+    working_directory: ~/varbrad.dev
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      key: dependency-cache-{{ checksum "yarn.lock" }}
+  save_node_modules: &save_node_modules
+    save_cache:
+      key: dependency-cache-{{ checksum "yarn.lock" }}
+      paths:
+        - ./node_modules
+
 jobs: # a collection of steps
-  build: # runs not using Workflows must have a `build` job as entry point
-    working_directory: ~/varbrad.dev # directory where steps will run
-    docker: # run the steps with Docker
-      - image: circleci/node:8.15.0 # ...with this image as the primary container; this is where all `steps` will run
+  setup: # runs not using Workflows must have a `build` job as entry point
+    <<: *js_env
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
-      - restore_cache: # special step to restore the dependency cache
-          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - *restore_node_modules
       - run:
-          name: yarn-install
+          name: js:install
           command: yarn
-      - save_cache: # special step to save the dependency cache
-          key: dependency-cache-{{ checksum "yarn.lock" }}
-          paths:
-            - ./node_modules
-      - run: # run linting
-          name: lint
+      - *save_node_modules
+  lint:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: js:lint
           command: yarn lint
-      # - run: # run tests
-      #     name: test
-      #     command: yarn test
+  test:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: js:test
+          command: yarn test
+  build:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: js:build
+          command: yarn build
+workflows:
+  version: 2
+  js_ci:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
+      - build:
+          requires:
+            - setup
+            - lint
+            - test
