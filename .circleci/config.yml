@@ -1,8 +1,13 @@
-version: 2 # use CircleCI 2.0
+version: 2.1 # use CircleCI 2.0
+
+executors:
+  js_env:
+    docker:
+      - image: circleci/node:8.15.0
+
 jobs: # a collection of steps
   setup: # runs not using Workflows must have a `build` job as entry point
-    docker: # run the steps with Docker
-      - image: circleci/node:8.15.0 # ...with this image as the primary container; this is where all `steps` will run
+    executor: js_env
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - restore_cache: # special step to restore the dependency cache
@@ -16,8 +21,7 @@ jobs: # a collection of steps
           paths:
             - ./node_modules
   lint:
-    docker:
-      - image: circleci/node:8.15.0
+    executor: js_env
     steps:
       - run: # run linting
           name: js:lint
@@ -30,7 +34,7 @@ jobs: # a collection of steps
           name: js:test
           command: yarn test
 workflows:
-  version: 2
+  version: 2.1
   js_ci:
     jobs:
       - setup
