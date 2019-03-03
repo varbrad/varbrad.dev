@@ -39,7 +39,7 @@ class MyDocument extends Document {
             rel='stylesheet'
             href='https://pro.fontawesome.com/releases/v5.7.2/css/all.css'
             integrity='sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev'
-            crossorigin='anonymous'
+            crossOrigin='anonymous'
           />
         </Head>
         <body>
