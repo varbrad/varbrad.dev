@@ -7,10 +7,10 @@ references:
     working_directory: ~/varbrad.dev
   restore_node_modules: &restore_node_modules
     restore_cache:
-      key: dependency-cache-{{ checksum "package.json" }}
+      key: dependency-cache-{{ checksum "yarn.lock" }}
   save_node_modules: &save_node_modules
     save_cache:
-      key: dependency-cache-{{ checksum "package.json" }}
+      key: dependency-cache-{{ checksum "yarn.lock" }}
       paths:
         - ./node_modules
 

@@ -3,7 +3,7 @@ import React from 'react'
 const Home = () => {
   const [data, setData] = React.useState(0)
   return (
-    <div>
+    <div style={{ backgroundColor: '#c9ddff' }}>
       <h1>Hi!</h1>
       <p>Current value is: {data}</p>
       <button onClick={() => setData(state => state + 1)}>
