@@ -1,3 +1,9 @@
+export const WHITE = '#ffffff'
+
+export const HEADING_COLOUR = '#4481eb'
+
+export const MAX_WIDTH = '1024px'
+
 export const SLANT_HEIGHT = '2rem'
 export const SLANT_PADDING = '4rem'
 

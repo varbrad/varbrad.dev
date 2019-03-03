@@ -1,6 +1,6 @@
 import React from 'react'
-import Heading from '../components/Heading'
-import Button from '../components/Button'
+import Heading from '../components/ui/Heading'
+import Button from '../components/ui/Button'
 import Section from '../components/layout/Section'
 import AboutMe from '../components/sections/AboutMe'
 import {
@@ -15,6 +15,7 @@ const Home = () => {
   const [data, setData] = React.useState(0)
   return (
     <div>
+      {/* Top thing goes here */}
       <AboutMe />
       <Section pattern={PATTERN_TRIANGLES}>
         <Heading>Hello!</Heading>
