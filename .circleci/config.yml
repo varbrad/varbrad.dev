@@ -1,43 +1,66 @@
-version: 2.1 # use CircleCI 2.0
+version: 2 # use CircleCI 2.0
 
-executors:
-  js_env:
+references:
+  js_env: &js_env
     docker:
       - image: circleci/node:8.15.0
+    working_directory: ~/varbrad.dev
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      key: dependency-cache-{{ checksum "package.json" }}
+  save_node_modules: &save_node_modules
+    save_cache:
+      key: dependency-cache-{{ checksum "package.json" }}
+      paths:
+        - ./node_modules
 
 jobs: # a collection of steps
   setup: # runs not using Workflows must have a `build` job as entry point
-    executor: js_env
+    <<: *js_env
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
-      - restore_cache: # special step to restore the dependency cache
-          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: dependency-cache-{{ checksum "package.json" }}
+      - *restore_node_modules
       - run:
           name: js:install
           command: yarn
-      - save_cache: # special step to save the dependency cache
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+      - *save_node_modules
   lint:
-    executor: js_env
+    <<: *js_env
     steps:
-      - run: # run linting
+      - checkout
+      - *restore_node_modules
+      - run:
           name: js:lint
           command: yarn lint
   test:
-    docker:
-      - image: circleci/node:8.15.0
+    <<: *js_env
     steps:
+      - checkout
+      - *restore_node_modules
       - run:
           name: js:test
           command: yarn test
+  test:
+    <<: *js_env
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: js:build
+          command: yarn build
 workflows:
-  version: 2.1
+  version: 2
   js_ci:
     jobs:
       - setup
       - lint:
+          requires:
+            - setup
+      - test:
+          type: approval
+          requires:
+            - setup
+      - build:
+          type: approval
           requires:
             - setup
