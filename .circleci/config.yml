@@ -60,10 +60,6 @@ workflows:
           requires:
             - setup
       - build:
-          filters:
-            branches:
-              only: master
-          type: approval
           requires:
             - setup
             - lint
