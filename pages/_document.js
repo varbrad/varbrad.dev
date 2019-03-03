@@ -1,5 +1,5 @@
 import React from 'react'
-import Document from 'next/document'
+import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
 class MyDocument extends Document {
@@ -29,6 +29,25 @@ class MyDocument extends Document {
     } finally {
       sheet.seal()
     }
+  }
+
+  render() {
+    return (
+      <html>
+        <Head>
+          <link
+            rel='stylesheet'
+            href='https://pro.fontawesome.com/releases/v5.7.2/css/all.css'
+            integrity='sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev'
+            crossorigin='anonymous'
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    )
   }
 }
 
