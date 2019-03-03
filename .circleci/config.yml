@@ -57,7 +57,6 @@ workflows:
           requires:
             - setup
       - test:
-          type: approval
           requires:
             - setup
       - build:
