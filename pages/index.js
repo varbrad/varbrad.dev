@@ -1,10 +1,12 @@
 import React from 'react'
 import Heading from '../components/Heading'
 
+import '../style.css'
+
 const Home = () => {
   const [data, setData] = React.useState(0)
   return (
-    <div style={{ backgroundColor: '#c9ddff' }}>
+    <div className='bg-red'>
       <Heading>Hello!</Heading>
       <p>Current value is: {data}</p>
       <button onClick={() => setData(state => state + 1)}>
