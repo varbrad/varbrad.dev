@@ -8,5 +8,8 @@
       "src": "/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
       "headers": { "cache-control": "immutable" }
     }
-  ]
+  ],
+  "github": {
+    "silent": true
+  }
 }
