@@ -3,7 +3,11 @@
     "es6": true
   },
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaVersion": 2019,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "extends": [
     "eslint:recommended",
