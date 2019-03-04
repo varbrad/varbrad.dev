@@ -9,6 +9,11 @@ const Panel = styled.div`
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
   padding: 5px;
   border-radius: 3px;
+
+  @media screen and (max-width: ${MAX_WIDTH}) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 `
 
 const PanelInner = styled.div`

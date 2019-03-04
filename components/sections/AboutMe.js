@@ -1,13 +1,13 @@
 import React from 'react'
 import Heading from '../ui/Heading'
 import Section from '../layout/Section'
-import { PATTERN_DIAMONDS } from '../../styles'
+import { PATTERN_TRIANGLES } from '../../styles'
 import Panel from '../layout/Panel'
 
 const AboutMe = () => (
-  <Section pattern={PATTERN_DIAMONDS}>
+  <Section pattern={PATTERN_TRIANGLES}>
     <Panel>
-      <Heading>About Me</Heading>
+      <Heading icon='far fa-question'>About Me</Heading>
     </Panel>
   </Section>
 )

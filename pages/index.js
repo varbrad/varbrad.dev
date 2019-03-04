@@ -10,41 +10,20 @@ import {
   PATTERN_STRIPES,
 } from '../styles'
 import '../styles/style.scss'
+import Projects from '../components/sections/Projects'
+import Skills from '../components/sections/Skills'
+import Contact from '../components/sections/Contact'
 
 const Home = () => {
   const [data, setData] = React.useState(0)
   return (
     <div>
       {/* Top thing goes here */}
+      <Section />
       <AboutMe />
-      <Section pattern={PATTERN_TRIANGLES}>
-        <Heading>Hello!</Heading>
-        <p className='py-4'>Current value is: {data}</p>
-        <Button onClick={() => setData(state => state + 1)}>
-          Click to +1
-        </Button>
-      </Section>
-      <Section pattern={PATTERN_CB}>
-        <Heading>Hello!</Heading>
-        <p className='py-4'>Current value is: {data}</p>
-        <Button onClick={() => setData(state => state + 1)}>
-          Click to +1
-        </Button>
-      </Section>
-      <Section pattern={PATTERN_STARS}>
-        <Heading>Hello!</Heading>
-        <p className='py-4'>Current value is: {data}</p>
-        <Button onClick={() => setData(state => state + 1)}>
-          Click to +1
-        </Button>
-      </Section>
-      <Section pattern={PATTERN_STRIPES}>
-        <Heading>Hello!</Heading>
-        <p className='py-4'>Current value is: {data}</p>
-        <Button onClick={() => setData(state => state + 1)}>
-          Click to +1
-        </Button>
-      </Section>
+      <Projects />
+      <Skills />
+      <Contact />
     </div>
   )
 }
