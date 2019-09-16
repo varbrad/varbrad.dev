@@ -5,7 +5,11 @@
   "repository": "https://github.com/varbrad/varbrad.dev.git",
   "author": "Brad Davies <varbrad@users.noreply.github.com>",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "next build",
+    "dev": "next",
+    "start": "next start"
+  },
   "dependencies": {
     "next": "^9.0.5",
     "react": "^16.9.0",
