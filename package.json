@@ -6,34 +6,34 @@
   "author": "Brad Davies <varbrad@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
     "build": "next build",
-    "now-build": "next build",
+    "dev": "next",
+    "lint": "eslint . --ext .js,.ts,.tsx",
     "start": "next start",
-    "lint": "yarn js:lint && yarn scss:lint",
-    "test": "yarn js:test",
-    "js:lint": "eslint pages",
-    "js:test": "jest --passWithNoTests",
-    "scss:lint": "sass-lint -v -q"
+    "test": "jest",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "@zeit/next-sass": "^1.0.1",
-    "autoprefixer": "^9.4.9",
-    "next": "^8.0.3",
-    "node-sass": "^4.11.0",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "styled-components": "^4.1.3",
-    "tailwindcss": "^0.7.4"
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^9.0.5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.0",
-    "eslint": "^5.15.0",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.12.4",
-    "jest": "^24.1.0",
-    "prettier": "^1.16.4",
-    "sass-lint": "^1.12.1"
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.5",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3"
   }
 }

@@ -1,9 +1,9 @@
 version: 2 # use CircleCI 2.0
 
 references:
-  js_env: &js_env
+  ts_env: &ts_env
     docker:
-      - image: circleci/node:8.15.0
+      - image: circleci/node:10.16.3
     working_directory: ~/varbrad.dev
   restore_node_modules: &restore_node_modules
     restore_cache:
@@ -16,63 +16,51 @@ references:
 
 jobs: # a collection of steps
   setup: # runs not using Workflows must have a `build` job as entry point
-    <<: *js_env
+    <<: *ts_env
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - *restore_node_modules
       - run:
-          name: js:install
+          name: install
           command: yarn
       - *save_node_modules
-  js:lint:
-    <<: *js_env
+  lint:
+    <<: *ts_env
     steps:
       - checkout
       - *restore_node_modules
       - run:
-          name: js:lint
-          command: yarn js:lint
-  js:test:
-    <<: *js_env
+          name: lint
+          command: yarn lint
+  test:
+    <<: *ts_env
     steps:
       - checkout
       - *restore_node_modules
       - run:
-          name: js:test
-          command: yarn js:test
-  scss:lint:
-    <<: *js_env
-    steps:
-      - checkout
-      - *restore_node_modules
-      - run:
-          name: scss:lint
-          command: yarn scss:lint
+          name: test
+          command: yarn test
   build:
-    <<: *js_env
+    <<: *ts_env
     steps:
       - checkout
       - *restore_node_modules
       - run:
-          name: js:build
+          name: build
           command: yarn build
 workflows:
   version: 2
-  js_ci:
+  ts_ci:
     jobs:
       - setup
-      - js:lint:
+      - lint:
           requires:
             - setup
-      - js:test:
-          requires:
-            - setup
-      - scss:lint:
+      - test:
           requires:
             - setup
       - build:
           requires:
             - setup
-            - js:lint
-            - js:test
-            - scss:lint
+            - lint
+            - test

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "name": "varbrad.dev",
+  "name": "varbrad",
   "alias": "varbrad.dev",
-  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
+  "builds": [{ "src": "package.json", "use": "@now/next" }],
   "routes": [
     {
       "src": "/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
